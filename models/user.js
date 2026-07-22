@@ -21,6 +21,10 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
+        },role: {
+            type: DataTypes.ENUM('admin', 'user'),
+            allowNull: false,
+            defaultValue: 'user'
         },
         createdAt: {
             type: DataTypes.DATE,
@@ -38,3 +42,4 @@ module.exports = (sequelize) => {
         timestamps: false
     });
 };
+
