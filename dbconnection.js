@@ -1,7 +1,7 @@
 const {Sequelize} = require('sequelize');
 
 
-const sequelize = new Sequelize('postgres://amgad:amgad@localhost:5432/tccd' );
+const sequelize = new Sequelize('postgres://postgres:amgad@localhost:5432/e-commerce' );
 sequelize.authenticate().then(() => {
     console.log('Connection has been established successfully.');
 }).catch((error) => {

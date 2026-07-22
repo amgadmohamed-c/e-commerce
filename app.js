@@ -1,13 +1,15 @@
-let express = require('express');
-let app = express();
-let bodyParser = require('body-parser');
-let fs = require('fs');
-let path = require('path');
+const db = require('./models');
+
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-server = app.listen(3000, function () {
+app.listen(3000, function () {
     console.log('Server listening on port 3000');
 });
+
+db.sequelize.sync({ force: true })
