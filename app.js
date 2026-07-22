@@ -1,10 +1,11 @@
 const db = require('./models');
 require('dotenv').config();
+const cookieParser = require('cookie-parser');
 
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

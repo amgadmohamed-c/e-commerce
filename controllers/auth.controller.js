@@ -25,13 +25,20 @@ module.exports = {
             res.status(400).json({ message: 'User not found' });
             return;
         }
+        const day = 1000 * 60 * 60 * 24;
         const { accessToken, refreshToken } = utils.signToken(user);
-        res.status(200).json({ accessToken, refreshToken , user});
+        res.cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'strict',
+            maxAge: day* 7
+        });
+        res.status(200).json({ accessToken, user});
 
     } ,
     async reauth(req, res) {
         try {
-            const { refreshToken } = req.body;
+            const refreshToken = req.cookies.refreshToken;
 
             if (!refreshToken) {
                 return res.status(400).json({
