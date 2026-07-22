@@ -12,4 +12,11 @@ app.listen(3000, function () {
     console.log('Server listening on port 3000');
 });
 
-db.sequelize.sync({ force: true })
+
+db.sequelize.sync({ alter: true })
+    .then(() => {
+        console.log("DB Synced!");
+    })
+    .catch((err) => {
+        console.log(err);
+    });
