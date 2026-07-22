@@ -1,5 +1,6 @@
+
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('product', {
+    return sequelize.define('category', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -13,20 +14,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        price: {
-            type: DataTypes.DECIMAL,
-            allowNull: false
-        },stock: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },categoryId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'categories',
-                key: 'id'
-            }
-        },
         createdAt: {
             type: DataTypes.DATE,
             allowNull: false,
@@ -39,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     }, {
         sequelize,
-        tableName: 'products',
+        tableName: 'categories',
         timestamps: false
     });
 };
