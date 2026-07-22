@@ -34,7 +34,7 @@ module.exports = {
     },
     async updateCartItem(req, res) {
         const { productId, quantity } = req.body;
-        if (!productId || !quantity) {
+        if (!productId || quantity <= 0 ) {
             res.status(400).json({ message: 'Please provide all the required fields' });
             return;
         }
