@@ -3,7 +3,9 @@ const productService = require("../services/product.service");
 
 module.exports = {
     async getProducts(req, res) {
-        const products = await productService.getProducts();
+        const limit = Number(req.query.limit) || 10;
+        const offset = Number(req.query.offset) || 0;
+        const products = await productService.getProducts(limit, offset);
         res.status(200).json(products);
     },
     async getProduct(req, res) {

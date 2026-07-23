@@ -4,12 +4,14 @@ const db = require('../models');
 
 module.exports = {
 
-    async getProducts() {
-        return await db.Product.findAll({
+    async getProducts(limit, offset) {
+        return await db.Product.findAndCountAll({
             include: [{
                 model: db.Category,
                 as: 'category'
-            }]
+            }] ,
+            limit: limit,
+            offset: offset
         });
     },
     async getProduct(id) {

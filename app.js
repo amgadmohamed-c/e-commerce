@@ -6,7 +6,7 @@ const jwtmiddleware = require('./middlewares/auth.middleware');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-
+const logger = require('./middlewares/logger.middleware');
 
 const authroute = require('./routes/auth.route');
 const userroute = require('./routes/user.route');
@@ -16,14 +16,12 @@ const cartroute = require('./routes/cart.route');
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(logger.logger);
 
 
 
 app.use('/api/auth', authroute);
 
-
-app.use(jwtmiddleware.verifyToken);
 app.use('/api/cart' , cartroute);
 app.use('/api/users' , userroute);
 app.use('/api/products', productroute);

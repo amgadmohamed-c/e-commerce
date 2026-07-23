@@ -7,5 +7,5 @@ router.delete('/',jwtmiddleware.verifyToken, cartcontroller.deleteCart);
 router.post('/items',jwtmiddleware.verifyToken, cartcontroller.createCartItem);
 router.patch('/items/:productId',jwtmiddleware.verifyToken, cartcontroller.updateCartItem);
 router.delete('/items/:productId',jwtmiddleware.verifyToken, cartcontroller.deleteCartItem);
-
+router.get('/items/:cartitemId',jwtmiddleware.verifyToken, cartcontroller.getCartItemInfo);
 module.exports = router;

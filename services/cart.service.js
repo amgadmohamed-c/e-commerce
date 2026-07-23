@@ -132,4 +132,18 @@ module.exports = {
 
         return await cartItem.destroy();
     }
+    ,
+    async getCartItemInfo(userId, cartitemId) {
+        const cart = await db.Cart.findOne({
+            where: { userId: userId }
+        });
+        if (!cart) {
+            throw new Error('Cart not found');
+        }
+        const cartItem = await db.Cartitem.findByPk(cartitemId);
+        if (!cartItem) {
+            throw new Error('Cart item not found');
+        }
+        return cartItem;
+    }
 };

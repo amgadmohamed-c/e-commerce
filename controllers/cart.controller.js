@@ -56,4 +56,14 @@ module.exports = {
         const cartitem = await cartService.deleteCartItem(req.user.id, productId);
         res.status(200).json(cartitem);
     }
+    ,
+    async getCartItemInfo(req, res) {
+        const cartitemId = req.params.cartitemId;
+        if (!cartitemId) {
+            res.status(400).json({ message: 'Please provide all the required fields' });
+            return;
+        }
+        const cartitem = await cartService.getCartItemInfo(req.user.id, cartitemId);
+        res.status(200).json(cartitem);
+    }
 };
