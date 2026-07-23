@@ -117,10 +117,10 @@ The project follows a layered architecture using Express.js, Sequelize ORM, and 
 ## Project Structure
 
 ```text
-tccd/
+my-app/
 │
-├── config/
-│   └── dbconnection.js
+│__
+|  dbconnection.js
 │
 ├── controllers/
 │   ├── auth.controller.js
