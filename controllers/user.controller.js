@@ -3,7 +3,10 @@ const userService = require("../services/user.service");
 
 module.exports = {
     async getallUsers(req, res) {
-        const users = await userService.getallUsers();
+        let{ page, limit } = req.query;
+        page = Number(page) || 1;
+        limit = Number(limit) || 10;
+        const users = await userService.getallUsers(page, limit);
         res.status(200).json(users);
     },
     async getUser(req, res) {

@@ -51,8 +51,11 @@ module.exports = {
             }
         });
     } ,
-    async getallUsers() {
-        const users = await db.User.findAll();
-        return users;
+    async getallUsers(  page, limit) {
+        return await db.User.findAndCountAll({
+
+        limit: limit,
+        offset:( page - 1) * limit,
+    });
     }
 }
