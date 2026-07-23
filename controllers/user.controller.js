@@ -2,6 +2,10 @@
 const userService = require("../services/user.service");
 
 module.exports = {
+    async getallUsers(req, res) {
+        const users = await userService.getallUsers();
+        res.status(200).json(users);
+    },
     async getUser(req, res) {
         const user = await userService.getUser(req.user.id);
         res.status(200).json(user);

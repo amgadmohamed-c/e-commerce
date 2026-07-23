@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
 
-    async register(username, password, email){
+    async register(username, email , password) {
         const user = await db.User.findOne({ where: { username } });
 
         if (user) {
@@ -30,15 +30,19 @@ module.exports = {
     async login(username, password) {
         const user = await db.User.findOne({ where: { username } });
 
+         console.log(user);
+         console.log(username , password);
         if (!user) {
             throw new Error('User not found');
         }
 
         const valid = await bcrypt.compare(password, user.password);
 
+        console.log(valid);
         if (!valid) {
             throw new Error('Invalid password');
         }
+
 
         return {
             id: user.id,

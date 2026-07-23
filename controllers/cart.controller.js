@@ -15,7 +15,13 @@ module.exports = {
         res.status(201).json(newcart);
     },
     async deleteCart(req, res) {
+        console.log(req.originalUrl);
+        console.log(req.params);
+        console.log(req.user);
         const userId = req.user.id;
+
+         console.log(userId);
+
         if (!userId) {
             res.status(400).json({ message: 'Please provide all the required fields' });
             return;

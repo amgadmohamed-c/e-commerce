@@ -50,5 +50,9 @@ module.exports = {
                 id
             }
         });
+    } ,
+    async getallUsers() {
+        const users = await db.User.findAll();
+        return users;
     }
 }

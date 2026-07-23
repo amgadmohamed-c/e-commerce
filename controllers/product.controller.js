@@ -12,6 +12,7 @@ module.exports = {
     },
     async createProduct(req, res) {
         const { name, description, price, stock, category } = req.body;
+        console.log(req.body);
         if (!name.trim() || !description.trim() || !price || !stock || !category) {
             res.status(400).json({ message: 'Please provide all the required fields' });
             return;

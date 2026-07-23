@@ -26,7 +26,7 @@ module.exports = {
         return product;
     },
     async createProduct(data) {
-        const category = await db.Category.findByPk(data.categoryId);
+        const category = await db.Category.findByPk(data.category);
 
         if (!category) {
             throw new Error('Category not found');
@@ -42,7 +42,7 @@ module.exports = {
             description: data.description,
             price: data.price,
             stock: data.stock,
-            categoryId: data.categoryId
+            categoryId: data.category
 
         });
     },

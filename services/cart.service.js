@@ -6,7 +6,7 @@ module.exports = {
             where: { userId: userId } ,
             include: [{
                 model: db.Cartitem,
-                as: 'cartItems'
+                as: 'items'
             }]
         });
         if (!cart) {
@@ -40,11 +40,10 @@ module.exports = {
         return await cart.destroy();
     },
     async createCartItem(userId, productId, quantity) {
-        const cart = await db.Cart.findOne({
-            where: { userId: userId }
-        });
+        let cart = await db.Cart.findOne({ where: { userId: userId } });
         if (!cart) {
-            throw new Error('Cart not found');
+            cart = await db.Cart.create({ userId: userId });
+
         }
 
         const product = await db.Product.findByPk(productId);
@@ -123,10 +122,6 @@ module.exports = {
             throw new Error('Cart not found');
         }
 
-        const product = await db.Product.findByPk(productId);
-        if (!product) {
-            throw new Error('Product not found');
-        }
 
         const cartItem = await db.Cartitem.findOne({
             where: { productId: productId, cartId: cart.id }

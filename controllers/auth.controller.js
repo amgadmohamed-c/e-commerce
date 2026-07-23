@@ -6,17 +6,18 @@ const utils = require('../utils/jwt');
 module.exports = {
     async signUp(req,res){
         const { username, email, password } = req.body;
-        if(!username.trim() || !email.includes('@') || !password.trim()) {
+        if(!username|| !email.includes('@')) {
             res.status(400).json({ message: 'Please provide all the required fields' });
             return;
         }
-        const newuser = await authservice.createUser(username, email, password);
+        const newuser = await authservice.register(username, email, password);
         res.status(201).json(newuser);
     }
     ,
     async signIn(req,res){
         const { username, password } = req.body;
-        if(!username.trim() || !password.trim()) {
+        console.log(req.body);
+        if(!username){
             res.status(400).json({ message: 'Please provide all the required fields' });
             return;
         }
